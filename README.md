@@ -9,9 +9,9 @@ Esta aplicación te permitirá gestionar tus rutinas de ejercicio de lunes a vie
 
 1. **Almacenar ejercicios**: Puedes guardar todos los ejercicios que realizas, ya sea que estén en tu rutina actual o que quieras tenerlos disponibles para futuras rutinas.
 
-2. **Visualizar ejercicios**: Desde la app, podrás ver los ejercicios que has guardado en una lista organizada, filtrando por día (lunes a viernes), tipo de ejercicio (cardio, fuerza, etc.) u otros criterios.
+2. **Visualizar ejercicios**: Desde la app, podrás ver los ejercicios que has guardado en una lista organizada.
 
-3. **Organizar ejercicios**: Podrás crear listas personalizadas de ejercicios según tus preferencias, como una lista específica para piernas o para un día de fuerza.
+3. **Organizar ejercicios**: Podrás crear listas personalizadas de ejercicios según tus preferencias.
 
 4. **CRUD (Agregar, Modificar, Eliminar)**: La app permite gestionar fácilmente los ejercicios, pudiendo agregar nuevos, modificar los existentes o eliminarlos si ya no son parte de tu rutina.
 
