@@ -1,0 +1,98 @@
+<resources>
+    <!-- General -->
+    <string name="app_name">GymTracker</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="Accept">Accept</string>
+    <string name="Cancel">Cancel</string>
+
+    <!-- Menú de selección de rutina -->
+    <string name="EDIT_PUSH">EDIT PUSH</string>
+    <string name="EDIT_PULL">EDIT PULL</string>
+    <string name="EDIT_LEG">EDIT LEG</string>
+    <string name="PUSH">PUSH</string>
+    <string name="PULL">PULL</string>
+    <string name="LEG">LEG</string>
+    <string name="STORAGE_EXERCISES">STORAGE EXERCISES</string>
+    <string name="SHOW_ROUTINES">SHOW ROUTINES</string>
+
+    <!-- Actividad Push_Activity -->
+    <string name="Exercises_Name">Exercises Name</string>
+    <string name="Reps">Reps</string>
+    <string name="Sets">Sets</string>
+    <string name="Add_Images">Add Images</string>
+    <string name="You_want_to_do_cardio">You want to do cardio?</string>
+    <string name="Add_Exercises_To_Push">Add Exercises To Push</string>
+
+    <!-- Actividad Leg_Activity -->
+    <string name="Add_Exercises_To_Leg">Add Exercises To Leg</string>
+
+    <!-- Actividad Pull_Activity -->
+    <string name="Add_Exercises_To_Pull">Add Exercises To Pull</string>
+
+    <!-- Actividad Show_Routines -->
+    <string name="Show_Routines">Show Routines</string>
+    <string name="Show_Exercises">Show Exercises</string>
+    <string name="Visualization_of_routines">Visualization of routines</string>
+    <string name="Train">Train</string>
+    <string name="Routine_Type">Routine Type</string>
+
+    <!-- Actividad Edit_Routines -->
+    <string name="Edit_Routines">Edit Routines</string>
+    <string name="Exercise_Name">Exercise Name</string>
+    <string name="Visualization_of_exercises">Visualization of exercises</string>
+    <string name="Edit">Edit</string>
+
+    <!-- Actividad WorkOut -->
+    <string name="WorkOut">WorkOut</string>
+    <string name="Day">Day</string>
+    <string name="Warmup">Warmup</string>
+    <string name="Cardio">Cardio</string>
+    <string name="Monday">Monday</string>
+    <string name="Tuesday">Tuesday</string>
+    <string name="Wednesday">Wednesday</string>
+    <string name="Thursday">Thursday</string>
+    <string name="Friday">Friday</string>
+    <string name="Saturday">Saturday</string>
+    <string name="Sunday">Sunday</string>
+
+    <!-- Botones generales -->
+    <string name="View">View</string>
+    <string name="Train_Now">Train Now</string>
+    <string name="Back_to_previous_Screen">Back To Previous Screen</string>
+
+    <!-- Mensajes de Confirmación -->
+    <string name="Confirm_Delete">Are you sure you want to delete?</string>
+    <string name="Confirm_Save">Are you sure you want to save changes?</string>
+    <string name="Confirm_Add">Are you sure you want to add this exercise?</string>
+    <string name="Confirm_Exit">Are you sure you want to exit without saving?</string>
+
+    <!-- Mensajes de Notificación -->
+    <string name="Exercise_Added">Exercise successfully added!</string>
+    <string name="Exercise_Updated">Exercise successfully updated!</string>
+    <string name="Exercise_Deleted">Exercise successfully deleted!</string>
+    <string name="Changes_Saved">Changes saved successfully!</string>
+    <string name="Error_Saving">Error while saving. Please try again.</string>
+    <string name="No_Exercises">No exercises found</string>
+
+    <!-- Mensajes de Error -->
+    <string name="Error_Empty_Fields">Please fill in all required fields.</string>
+    <string name="Error_Invalid_Name">Invalid name. Please enter a valid exercise name.</string>
+    <string name="Error_Invalid_Reps">Invalid number of reps. Please enter a valid number.</string>
+    <string name="Error_Invalid_Sets">Invalid number of sets. Please enter a valid number.</string>
+    <string name="Error_No_Internet">No internet connection. Please check your network settings.</string>
+    <string name="Exercise_Not_Found">Exercise not found</string>
+
+
+    <!-- Mensajes de Éxito -->
+    <string name="Success">Operation completed successfully!</string>
+    <string name="Success_Added_To_Routine">Exercise added to routine successfully!</string>
+    <string name="Success_Updated_Routine">Routine updated successfully!</string>
+    <string name="Success_Deleted_From_Routine">Exercise removed from routine successfully!</string>
+
+    <!-- Otros mensajes -->
+    <string name="Welcome">Welcome to GymTracker!</string>
+    <string name="Good_Job">Good job! Keep pushing your limits!</string>
+    <string name="Loading">Loading...</string>
+    <string name="Please_Wait">Please wait...</string>
+</resources>

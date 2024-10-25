@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Main">
+
+    <Button
+        android:id="@+id/LegBtn"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="@string/LEG"
+        app:layout_constraintBottom_toTopOf="@+id/ShowRoutinesBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PullBtn" />
+
+    <Button
+        android:id="@+id/ShowRoutinesBtn"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#00BCD4"
+        android:text="@string/SHOW_ROUTINES"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/LegBtn"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/TitleExercise"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/STORAGE_EXERCISES"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Button
+        android:id="@+id/PullBtn"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="@string/PULL"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.39" />
+
+    <Button
+        android:id="@+id/PushBtn"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#000000"
+        android:text="@string/PUSH"
+        app:layout_constraintBottom_toTopOf="@+id/PullBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TitleExercise"
+        app:layout_constraintVertical_bias="0.505" />
+</androidx.constraintlayout.widget.ConstraintLayout>
