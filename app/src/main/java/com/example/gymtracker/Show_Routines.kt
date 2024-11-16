@@ -1,12 +1,16 @@
 package com.example.gymtracker
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gymtracker.entities.Exercise
+import com.example.gymtracker.model.ExerciseModel
+import com.example.gymtracker.util.EXTRA_MESSAGE_EXERCISE_ID
+import com.example.gymtracker.util.Util
 
 class Show_Routines : AppCompatActivity() {
 
@@ -14,42 +18,32 @@ class Show_Routines : AppCompatActivity() {
     private lateinit var btnPull: Button
     private lateinit var btnLeg: Button
     private lateinit var selectedRoutine: String
+    private lateinit var exerciseModel: ExerciseModel
+    private var exercisesForRoutine: List<Exercise> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_routines)
 
-        // Inicializar botones
+        exerciseModel = ExerciseModel(this)
+
         btnPush = findViewById(R.id.btnPush)
         btnPull = findViewById(R.id.btnPull)
         btnLeg = findViewById(R.id.btnLeg)
 
-        // Inicializar rutina seleccionada
-        selectedRoutine = "PUSH"
-
-        // Configurar listeners de los botones
         btnPush.setOnClickListener { selectRoutine("PUSH", btnPush) }
         btnPull.setOnClickListener { selectRoutine("PULL", btnPull) }
         btnLeg.setOnClickListener { selectRoutine("LEG", btnLeg) }
 
-        // Configurar el botón "Train"
-        val btnTrain: Button = findViewById(R.id.btnTrain)
-        btnTrain.setOnClickListener {
-            startWorkout()
-        }
+        findViewById<Button>(R.id.btnTrain).setOnClickListener { startTraining() }
+
+        selectRoutine("PUSH", btnPush)
     }
 
     private fun selectRoutine(routine: String, selectedButton: Button) {
-        // Restablecer el color de todos los botones
         resetButtonColors()
-
-        // Cambiar el color del botón seleccionado a azul
         selectedButton.setBackgroundColor(Color.BLUE)
-
-        // Guardar la rutina seleccionada
         selectedRoutine = routine
-
-        // Actualizar la lista de ejercicios (ejemplo)
         updateExerciseList(routine)
     }
 
@@ -63,29 +57,47 @@ class Show_Routines : AppCompatActivity() {
         val llExerciseList: LinearLayout = findViewById(R.id.llExerciseList)
         llExerciseList.removeAllViews()
 
-        // Lista de ejercicios según la rutina seleccionada
-        val exercises = when (routine) {
-            "PUSH" -> listOf("Press banca", "Flexiones", "Dips", "Press militar")
-            "PULL" -> listOf("Dominadas", "Remo con barra", "Curl de bíceps", "Encogimientos")
-            "LEG" -> listOf("Sentadillas", "Prensa", "Peso muerto", "Extensiones de pierna")
-            else -> listOf("Ejercicio desconocido")
-        }
+        exercisesForRoutine = exerciseModel.getExercises().filter { it.type == routine }
 
-        // Añadir los ejercicios al layout
-        for (exercise in exercises) {
-            val exerciseView = TextView(this).apply {
-                text = exercise
+        if (exercisesForRoutine.isEmpty()) {
+            val noExercisesView = TextView(this).apply {
+                text = getString(R.string.No_Exercises)
                 textSize = 18f
                 setPadding(16, 8, 16, 8)
             }
-            llExerciseList.addView(exerciseView)
+            llExerciseList.addView(noExercisesView)
+        } else {
+            for (exercise in exercisesForRoutine) {
+                val exerciseView = TextView(this).apply {
+                    text = "${exercise.name} - ${Util.formatRepsAndSets(exercise.reps, exercise.sets)}"
+                    textSize = 18f
+                    setPadding(16, 8, 16, 8)
+                    setOnClickListener { openEditExercise(exercise) }
+                }
+                llExerciseList.addView(exerciseView)
+            }
         }
     }
 
-    private fun startWorkout() {
-        // Iniciar la actividad WorkOut con la rutina seleccionada
-        val intent = Intent(this, WorkOut::class.java)
-        intent.putExtra("SELECTED_ROUTINE", selectedRoutine)
-        startActivity(intent)
+    private fun openEditExercise(exercise: Exercise) {
+        if (exercise.id.isNullOrEmpty()) {
+            Toast.makeText(this, getString(R.string.Exercise_Not_Found), Toast.LENGTH_SHORT).show()
+        } else {
+            Util.openActivity(
+                this,
+                Edit_Exercise_Activity::class.java,
+                EXTRA_MESSAGE_EXERCISE_ID,
+                exercise.id
+            )
+        }
+    }
+
+    private fun startTraining() {
+        if (exercisesForRoutine.isNotEmpty()) {
+            val exerciseNamesSerialized = exercisesForRoutine.joinToString(",") { it.name }
+            Util.openActivity(this, Show_Exercises::class.java, "EXERCISE_LIST", exerciseNamesSerialized)
+        } else {
+            Toast.makeText(this, getString(R.string.No_Exercises), Toast.LENGTH_SHORT).show()
+        }
     }
 }

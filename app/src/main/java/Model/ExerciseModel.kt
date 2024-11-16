@@ -24,13 +24,6 @@ class ExerciseModel(context: Context) {
         }
         return result
     }
-
-    fun getExerciseNames(): List<String> {
-        val names = mutableListOf<String>()
-        dbManager.getAll().forEach { i -> names.add(i.fullName) }
-        return names.toList()
-    }
-
     fun removeExercise(id: String) {
         val result = dbManager.getById(id)
         if (result == null) {
@@ -42,14 +35,5 @@ class ExerciseModel(context: Context) {
 
     fun updateExercise(exercise: Exercise) {
         dbManager.update(exercise)
-    }
-
-    fun getExerciseByFullName(fullName: String): Exercise {
-        val result = dbManager.getByFullName(fullName)
-        if (result == null) {
-            val message = _context.getString(R.string.Exercise_Not_Found)
-            throw Exception(message)
-        }
-        return result
     }
 }

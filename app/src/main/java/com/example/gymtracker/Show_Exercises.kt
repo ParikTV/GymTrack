@@ -1,28 +1,49 @@
 package com.example.gymtracker
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import androidx.activity.enableEdgeToEdge
+import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.gymtracker.util.Util
 
 class Show_Exercises : AppCompatActivity() {
+
+    private lateinit var exerciseListLayout: LinearLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_show_exercises)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        exerciseListLayout = findViewById(R.id.llExerciseList)
+
+        val exerciseNames = intent.getStringExtra("EXERCISE_LIST")?.split(",") ?: emptyList()
+
+        displayExercises(exerciseNames)
+
+        findViewById<Button>(R.id.btnVolver).setOnClickListener {
+            Util.openActivity(this, Show_Routines::class.java)
         }
-        val VolverScreen: Button = findViewById<Button>(R.id.btnVolver)
-        VolverScreen.setOnClickListener(View.OnClickListener { view ->
-            val intentVolver_Screen = Intent(this, Main::class.java)
-            startActivity(intentVolver_Screen)
-        })
+    }
+
+    private fun displayExercises(exerciseNames: List<String>) {
+        exerciseListLayout.removeAllViews() // Clear previous views
+        if (exerciseNames.isEmpty()) {
+            val noExerciseView = TextView(this).apply {
+                text = getString(R.string.No_Exercises)
+                textSize = 18f
+                setPadding(16, 8, 16, 8)
+            }
+            exerciseListLayout.addView(noExerciseView)
+        } else {
+            for (exerciseName in exerciseNames) {
+                val exerciseView = TextView(this).apply {
+                    text = exerciseName
+                    textSize = 18f
+                    setPadding(16, 8, 16, 8)
+                }
+                exerciseListLayout.addView(exerciseView)
+            }
+        }
     }
 }
