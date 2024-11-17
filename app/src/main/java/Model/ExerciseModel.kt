@@ -24,6 +24,7 @@ class ExerciseModel(context: Context) {
         }
         return result
     }
+
     fun removeExercise(id: String) {
         val result = dbManager.getById(id)
         if (result == null) {
@@ -33,7 +34,15 @@ class ExerciseModel(context: Context) {
         dbManager.remove(id)
     }
 
+
     fun updateExercise(exercise: Exercise) {
-        dbManager.update(exercise)
+        val existingExercise = MemoryManager.getById(exercise.id)
+        if (existingExercise != null) {
+            existingExercise.name = exercise.name
+            existingExercise.reps = exercise.reps
+            existingExercise.sets = exercise.sets
+            existingExercise.imageByteArray = exercise.imageByteArray // Actualizar la imagen
+            MemoryManager.update(existingExercise)
+        }
     }
 }

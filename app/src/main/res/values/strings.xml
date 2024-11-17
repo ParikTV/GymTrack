@@ -69,6 +69,9 @@
     <string name="Show_Exercises">Show Exercises</string>
     <string name="Show_Routines">Show Routines</string>
     <string name="Routine_Type">Routine: %1$s</string>
+    <string name="Take_Photo">Take photo</string>
+    <string name="Choose_From_Gallery">Choose From Gallery</string>
+    <string name="Permission_Denied">Permission Denied</string>
 
 
 
