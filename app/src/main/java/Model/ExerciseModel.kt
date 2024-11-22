@@ -1,13 +1,13 @@
 package com.example.gymtracker.model
 
-import com.example.gymtracker.data.MemoryManager
 import com.example.gymtracker.entities.Exercise
 import com.example.gymtracker.interfaces.IExerciseRepository
 import android.content.Context
 import com.example.gymtracker.R
+import com.example.gymtracker.data.SQLiteManager
 
 class ExerciseModel(context: Context) {
-    private var dbManager: IExerciseRepository = MemoryManager
+    private var dbManager: IExerciseRepository = SQLiteManager(context)
     private val _context: Context = context
 
     fun addExercise(exercise: Exercise) {
@@ -25,12 +25,6 @@ class ExerciseModel(context: Context) {
         return result
     }
 
-    fun getExerciseNames(): List<String> {
-        val names = mutableListOf<String>()
-        dbManager.getAll().forEach { i -> names.add(i.fullName) }
-        return names.toList()
-    }
-
     fun removeExercise(id: String) {
         val result = dbManager.getById(id)
         if (result == null) {
@@ -41,15 +35,12 @@ class ExerciseModel(context: Context) {
     }
 
     fun updateExercise(exercise: Exercise) {
-        dbManager.update(exercise)
-    }
-
-    fun getExerciseByFullName(fullName: String): Exercise {
-        val result = dbManager.getByFullName(fullName)
-        if (result == null) {
+        val existingExercise = dbManager.getById(exercise.id)
+        if (existingExercise != null) {
+            dbManager.update(exercise)
+        } else {
             val message = _context.getString(R.string.Exercise_Not_Found)
             throw Exception(message)
         }
-        return result
     }
 }

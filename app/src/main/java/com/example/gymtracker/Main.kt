@@ -1,13 +1,12 @@
 package com.example.gymtracker
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.gymtracker.util.Util
 
 class Main : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,29 +18,25 @@ class Main : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val PushScreen: Button = findViewById<Button>(R.id.PushBtn)
-        PushScreen.setOnClickListener(View.OnClickListener { view ->
-            val intentPushScreen = Intent(this, Push_Activity::class.java)
-            startActivity(intentPushScreen)
-        })
 
-        val PullScreen: Button = findViewById<Button>(R.id.PullBtn)
-        PullScreen.setOnClickListener(View.OnClickListener { view ->
-            val intentPullScreen = Intent(this, Pull_Activity::class.java)
-            startActivity(intentPullScreen)
-        })
+        val PushScreen: Button = findViewById(R.id.PushBtn)
+        PushScreen.setOnClickListener {
+            Util.openActivity(this, Push_Activity::class.java)
+        }
 
-        val LegScreen: Button = findViewById<Button>(R.id.LegBtn)
-        LegScreen.setOnClickListener(View.OnClickListener { view ->
-            val intentLegScreen = Intent(this, Leg_Activity::class.java)
-            startActivity(intentLegScreen)
-        })
+        val PullScreen: Button = findViewById(R.id.PullBtn)
+        PullScreen.setOnClickListener {
+            Util.openActivity(this, Pull_Activity::class.java)
+        }
 
-        val RoutinesScreen: Button = findViewById<Button>(R.id.ShowRoutinesBtn)
-        RoutinesScreen.setOnClickListener(View.OnClickListener { view ->
-            val intentLegScreen = Intent(this, Show_Routines::class.java)
-            startActivity(intentLegScreen)
-        })
+        val LegScreen: Button = findViewById(R.id.LegBtn)
+        LegScreen.setOnClickListener {
+            Util.openActivity(this, Leg_Activity::class.java)
+        }
 
+        val RoutinesScreen: Button = findViewById(R.id.ShowRoutinesBtn)
+        RoutinesScreen.setOnClickListener {
+            Util.openActivity(this, Show_Routines::class.java)
+        }
     }
 }
